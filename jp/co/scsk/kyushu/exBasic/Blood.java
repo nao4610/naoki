@@ -34,7 +34,6 @@ public class Blood {
 		}
 		return false;
 	}
-
 }
 
 
