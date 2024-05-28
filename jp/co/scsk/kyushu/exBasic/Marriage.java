@@ -14,7 +14,7 @@ public class Marriage {
 			return false;
 		}
 	}
-	
+
 	public boolean checkMarriage(Human human1, Human human2) {
 		if (human1.getSex().isMan() == human2.getSex().isWoman()) {
 			if (checkMarriage(human1) && checkMarriage(human2)) {

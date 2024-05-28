@@ -6,9 +6,9 @@ public class MyString {
 			System.out.println("ビーーー");
 		}
 	}
-	
+
 	public void branch(int num2) {
-		switch(num2) {
+		switch (num2) {
 		case 1:
 			System.out.println("おはようございます");
 			break;
@@ -28,15 +28,15 @@ public class MyString {
 			System.out.println("さようなら");
 		}
 	}
-	
+
 	public String concat(String[] str) {
 		String text = new String();
-		for (String comb: str) {
+		for (String comb : str) {
 			text = text.concat(comb);
 		}
 		return text;
 	}
-	
+
 	public String replace(String str) {
 		String tsv = str.replace(',', '\t');
 		return tsv;

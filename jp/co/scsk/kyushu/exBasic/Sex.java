@@ -15,7 +15,7 @@ public class Sex {
 		}
 		return false;
 	}
-	
+
 	public boolean isWoman() {
 		if (sex == 1) {
 			return true;
