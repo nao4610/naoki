@@ -2,9 +2,9 @@ package jp.co.scsk.kyushu.exBasic;
 
 public class MyMath {
 	public static void main(String[] args) {
-		int num1 = 4;
-		int num2 = 7;
-		int num3 = 5;
+		int num1 = 3;
+		int num2 = -2;
+		int num3 = -3;
 
 		MyMath calc = new MyMath();
 		System.out.println(calc.calcPlus(num1, num2));
@@ -128,30 +128,29 @@ public class MyMath {
 	public int calc2(int... nums) {
 		int result = 0;
 		if (nums[0] == 1) {
-			for (int num = 1; num < nums.length; num++) {
-				result += nums[num];
+			for (int idx = 1; idx < nums.length; idx++) {
+				result += nums[idx];
 			}
 		} else if (nums[0] == 2) {
-			for (int num = 1; num < nums.length; num++) {
-				result += nums[num];
+			for (int idx = 1; idx < nums.length; idx++) {
+				result += nums[idx];
 			}
 			result = result / (nums.length - 1);
 		} else if (nums[0] == 3) {
-			for (int num : nums) {
-				if (result < num) {
-					result = num;
+			result = nums[1];
+			for (int idx = 1; idx < nums.length; idx++) {
+				if (result < nums[idx]) {
+					result = nums[idx];
 				}
 			}
 		} else if (nums[0] == 4) {
 			result = nums[1];
-			for (int num = 1; num < nums.length; num++) {
-				if (result > nums[num]) {
-					result = nums[num];
+			for (int idx = 1; idx < nums.length; idx++) {
+				if (result > nums[idx]) {
+					result = nums[idx];
 				}
 			}
-		} else if (nums.length <= 1) {
-			result = 0;
-		}
+		} 
 		return result;
 	}
 }
