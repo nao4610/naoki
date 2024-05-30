@@ -2,7 +2,7 @@ package jp.co.scsk.kyushu.exBasic;
 
 public class MyMath {
 	public static void main(String[] args) {
-		int num1 = 3;
+		int num1 = 1;
 		int num2 = -2;
 		int num3 = -3;
 
@@ -72,40 +72,42 @@ public class MyMath {
 
 	public int countUpSum2(int num1, int num2) {
 		int upsum2 = 0;
-		while (num1 <= num2) {
-			upsum2 += num1;
-			num1++;
+		int num = num1;
+		while (num <= num2) {
+			upsum2 += num;
+			num++;
 		}
 		return upsum2;
 	}
 
 	public int countUpSum3(int num1, int num2) {
 		int upsum3 = 0;
+		int num = num1;
 		do {
-			upsum3 += num1;
-			num1++;
-		} while (num1 <= num2);
+			upsum3 += num;
+			num++;
+		} while (num <= num2);
 		return upsum3;
 	}
 
 	public int calc(int num1, int num2, int num3) {
 		int result = 0;
 		if (num1 == 1) {
-			result = num2 + num3;
+			result = calcPlus(num2, num3);
 		} else if (num1 == 2) {
-			result = num2 - num3;
+			result = calcMinus(num2, num3);
 		} else if (num1 == 3) {
-			result = num2 * num3;
+			result = calcTime(num2, num3);
 		} else if (num1 == 4) {
-			result = num2 / num3;
+			result = calcDiv(num2, num3);
 		} else if (num1 == 5) {
-			result = num2 % num3;
+			result = calcMod(num2, num3);
 		}
 		return result;
 	}
 
 	public int max(int... nums) {
-		int result = 0;
+		int result = nums[0];
 		for (int num : nums) {
 			if (result < num) {
 				result = num;
@@ -150,7 +152,25 @@ public class MyMath {
 					result = nums[idx];
 				}
 			}
-		} 
+		}
 		return result;
+	}
+
+	public int round4(double num) {
+		int firstNum = (int) ((num * 10) % 10);
+		if (firstNum >= 5) {
+			return (int) Math.ceil(num);
+		} else {
+			return (int) Math.floor(num);
+		}
+	}
+
+	public int round6(double num) {
+		int firstNum = (int) ((num * 10) % 10);
+		if (firstNum >= 6) {
+			return (int) Math.ceil(num);
+		} else {
+			return (int) Math.floor(num);
+		}
 	}
 }
