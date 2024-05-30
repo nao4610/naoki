@@ -69,15 +69,15 @@ public class Human {
 		System.out.println("・・・");
 	}
 
-	public void speak(String sp) {
-		System.out.println(sp);
+	public void speak(String str) {
+		System.out.println(str);
 	}
 
-	public void speak(String sp1, int sp2) {
-		int num = 0;
-		while (num > 0) {
-			num--;
-			System.out.println(sp1);
+	public void speak(String str, int num) {
+		int num1 = num;
+		while (num1 > 0) {
+			num1--;
+			System.out.println(str);
 		}
 	}
 }
