@@ -154,7 +154,7 @@ public class Races {
 			Double runTime = Info.getTime();
 			Integer order = Info.getOrder();
 			System.out.println(name + ":" + runTime + ":" + order);
-			if (i == 10) {
+			if (i == 9) {
 				break;
 			}
 
