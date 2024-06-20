@@ -2,11 +2,11 @@ package jUnit;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,8 +15,7 @@ import jp.co.scsk.kyushu.exBasic.RacerInfo;
 import jp.co.scsk.kyushu.exBasic.Races;
 
 class RacesTest {
-	Races races = new Races();
-
+	private Races races;
 	private Map<Integer, Map<Integer, RacerInfo>> result;
 
 	@BeforeEach
@@ -46,45 +45,38 @@ class RacesTest {
 		assertEquals("okamoto", result.get(2).get(3).getRunner());
 		assertEquals("ino", result.get(3).get(1).getRunner());
 		assertEquals("yossidayo", result.get(3).get(2).getRunner());
-		assertEquals("yossi", result.get(3).get(4).getRunner());
 		assertEquals("yosida", result.get(3).get(3).getRunner());
+		assertEquals("yossi", result.get(3).get(4).getRunner());
 	}
 
 	@Test
 	void testSortRaceResult() {
-		Map<Integer, Map<Integer, RacerInfo>> raceResult = new HashMap<>();
-		Map<Integer, RacerInfo> race1 = new HashMap<>();
-		race1.put(1, new RacerInfo("nao", 1, 1, 10.2));
-		race1.put(2, new RacerInfo("hiro", 1, 2, 11.0));
-		race1.put(3, new RacerInfo("ryo", 1, 3, 11.7));
-		Map<Integer, RacerInfo> race2 = new HashMap<>();
-		race2.put(1, new RacerInfo("syu", 2, 1, 11.3));
-		race2.put(2, new RacerInfo("taba", 2, 2, 12.0));
-		race2.put(3, new RacerInfo("okamoto", 2, 3, 13.0));
-		raceResult.put(1, race1);
-		raceResult.put(2, race2);
+		Map<Integer, Map<Integer, RacerInfo>> raceResult = races.createReceResult(new ArrayList<>(List.of(
+				new RacerInfo("nao", 1, 1, 10.2),
+				new RacerInfo("hiro", 1, 2, 11.0),
+				new RacerInfo("ryo", 1, 3, 11.7),
+				new RacerInfo("syu", 2, 1, 11.3),
+				new RacerInfo("taba", 2, 2, 12.0),
+				new RacerInfo("okamoto", 2, 3, 13.0))));
 
 		// レース1の結果
-		Map<Double, String> expectedRace1 = new TreeMap<>();
-		expectedRace1.put(10.2, "nao");
-		expectedRace1.put(11.0, "hiro");
-		expectedRace1.put(11.7, "ryo");
+		Map<Double, String> expectedRace1 = Map.of(
+				10.2, "nao",
+				11.0, "hiro",
+				11.7, "ryo");
 		assertEquals(expectedRace1, races.sortRaceResult(raceResult, 1));
 
 		// レース2の結果
-		Map<Double, String> expectedRace2 = new TreeMap<>();
-		expectedRace2.put(11.3, "syu");
-		expectedRace2.put(12.0, "taba");
-		expectedRace2.put(13.0, "okamoto");
+		Map<Double, String> expectedRace2 = Map.of(
+				11.3, "syu",
+				12.0, "taba",
+				13.0, "okamoto");
 		assertEquals(expectedRace2, races.sortRaceResult(raceResult, 2));
 	}
 
 	@Test
 	void testBestRacerInfoOfRace() {
-		List<String> expectedOutput = new ArrayList<>();
-		expectedOutput.add("nao");
-		expectedOutput.add("syu");
-		expectedOutput.add("ino");
+		List<String> expectedOutput = List.of("nao", "syu", "ino");
 		assertEquals(expectedOutput, races.bestRacerInfoOfRace(result));
 	}
 
@@ -99,7 +91,7 @@ class RacesTest {
 	@Test
 	void testWorstRacerInfoOfAll() {
 		RacerInfo worstRacer = races.worstRacerInfoOfAll(result);
-		RacerInfo expectedWorstRacer = new RacerInfo("yossi", 3, 3, 13.6);
+		RacerInfo expectedWorstRacer = new RacerInfo("yossi", 3, 4, 13.6);
 		assertEquals(expectedWorstRacer.getRunner(), worstRacer.getRunner());
 		assertEquals(expectedWorstRacer.getTime(), worstRacer.getTime());
 	}
@@ -112,15 +104,27 @@ class RacesTest {
 	}
 
 	@Test
-    void testTop10RacerInfo() {
-        Map<Integer, RacerInfo> top10Racers = races.top10RacerInfo(result);
-        List<String> expectedTop10Racers = List.of(
-            "nao", "ino", "hiro", "syu", "yossidayo", "taba", "ryo", "yosida", "okamoto", "yossi"
-        );
+	void testTop10RacerInfo() {
+		// 標準出力をキャプチャする
+		ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+		System.setOut(new PrintStream(outContent));
 
-        for (int i = 1; i <= 10; i++) {
-            assertEquals(expectedTop10Racers.get(i - 1), top10Racers.get(i).getRunner());
-        }
-    }
+		// メソッドを呼び出す
+		races.top10RacerInfo(result);
 
+		// 期待される出力
+		String expectedOutput = "nao:10.2:1\n" +
+				"ino:10.6:3\n" +
+				"hiro:11.0:1\n" +
+				"syu:11.3:2\n" +
+				"yossidayo:11.6:3\n" +
+				"ryo:11.7:1\n" +
+				"taba:12.0:2\n" +
+				"yosida:12.6:3\n" +
+				"okamoto:13.0:2\n" +
+				"yossi:13.6:3\n";
+
+		// 出力を検証する
+		assertEquals(expectedOutput, outContent.toString().replace("\r", ""));
+	}
 }

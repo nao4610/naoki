@@ -1,9 +1,8 @@
 package jp.co.scsk.kyushu.exBasic;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -89,49 +88,29 @@ public class Races {
 		return winners;
 	}
 
-	public Map<Integer, RacerInfo> top10RacerInfo(Map<Integer, Map<Integer, RacerInfo>> racerInfoMap) {
-		List<Double> racerTime = new ArrayList<Double>();
-		Map<Integer, RacerInfo> fasterMap = new HashMap<Integer, RacerInfo>();
-		for (Integer order : racerInfoMap.keySet()) {
-			for (Integer rank : racerInfoMap.get(order).keySet()) {
-				racerTime.add(racerInfoMap.get(order).get(rank).getTime());
+	public void top10RacerInfo(Map<Integer, Map<Integer, RacerInfo>> top10) {
+		List<RacerInfo> racerInfo = new ArrayList<>();
+		List<Double> timeList = new ArrayList<>();
+		for (Integer order : top10.keySet()) {
+			for (Integer rank : top10.get(order).keySet()) {
+				top10.put(order, top10.get(order));
+				timeList.add(top10.get(order).get(rank).getTime());
 			}
 		}
-
-		Collections.sort(racerTime);
-
-		int index = 0;
-
-		for (Iterator<Map.Entry<Integer, Map<Integer, RacerInfo>>> it = racerInfoMap.entrySet().iterator(); it
-				.hasNext();) {
-			Map.Entry<Integer, Map<Integer, RacerInfo>> entry = it.next();
-			Map<Integer, RacerInfo> subMap = entry.getValue();
-
-			for (Iterator<Map.Entry<Integer, RacerInfo>> subIt = subMap.entrySet().iterator(); subIt.hasNext();) {
-				Map.Entry<Integer, RacerInfo> subEntry = subIt.next();
-				RacerInfo info = subEntry.getValue();
-
-				if (info.getTime() == racerTime.get(index)) {
-					fasterMap.put(index + 1, info);
-					subIt.remove(); // 安全に削除
-					index++;
-				}
-
-				if (fasterMap.size() >= 10) {
-					break;
+		timeList.sort(Comparator.naturalOrder());
+		for (int i = 0; i < 10 && i < timeList.size(); i++) {
+			label: for (Integer order : top10.keySet()) {
+				for (Integer rank : top10.get(order).keySet()) {
+					if (Double.compare(timeList.get(i), top10.get(order).get(rank).getTime()) == 0) {
+						racerInfo.add(top10.get(order).get(rank));
+						break label;
+					}
 				}
 			}
-
-			if (fasterMap.size() >= 10) {
-				break;
-			}
 		}
-
-		for (Integer key : fasterMap.keySet()) {
-			System.out.println("名前：" + fasterMap.get(key).getRunner() + "\tタイム：" + fasterMap.get(key).getTime() + "\t走順："
-					+ fasterMap.get(key).getOrder());
+		for (int i = 0; i < racerInfo.size(); i++) {
+			System.out.println(racerInfo.get(i).getRunner() + ":" + racerInfo.get(i).getTime() + ":"
+					+ racerInfo.get(i).getOrder());
 		}
-
-		return fasterMap;
 	}
 }
