@@ -10,7 +10,7 @@ class MyMathTest {
 	MyMath myMath = new MyMath();
 
 	@Test
-	void testkCalc1() {
+	void testCalc1() {
 
 		// 加算のテスト
 		assertEquals(5, myMath.calc(1, 2, 3));
@@ -32,7 +32,7 @@ class MyMathTest {
 	}
 
 	@Test
-	public void testkCalc2() {
+	public void testCalc2() {
 		// 加算のテスト
 		assertEquals(6, myMath.calc2(1, 1, 2, 3));
 		assertEquals(-1, myMath.calc2(1, -1));

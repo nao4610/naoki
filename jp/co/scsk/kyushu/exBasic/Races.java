@@ -2,8 +2,8 @@ package jp.co.scsk.kyushu.exBasic;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -37,18 +37,18 @@ public class Races {
 	}
 
 	public List<String> bestRacerInfoOfRace(Map<Integer, Map<Integer, RacerInfo>> raceResult) {
-        List<String> bestRacers = new ArrayList<>();
-        Map<Integer, RacerInfo> firstMap = new HashMap<>();
-        for (Integer order : raceResult.keySet()) {
-            firstMap.put(order, raceResult.get(order).get(1));
-        }
-        for (Integer order : firstMap.keySet()) {
-            bestRacers.add(firstMap.get(order).getRunner());
-        }
-        return bestRacers;
-    }
+		List<String> bestRacers = new ArrayList<>();
+		Map<Integer, RacerInfo> firstMap = new HashMap<>();
+		for (Integer order : raceResult.keySet()) {
+			firstMap.put(order, raceResult.get(order).get(1));
+		}
+		for (Integer order : firstMap.keySet()) {
+			bestRacers.add(firstMap.get(order).getRunner());
+		}
+		return bestRacers;
+	}
 
-	public void bestRacerInfoOfAll(Map<Integer, Map<Integer, RacerInfo>> raceResult) {
+	public RacerInfo bestRacerInfoOfAll(Map<Integer, Map<Integer, RacerInfo>> raceResult) {
 		RacerInfo resultInfo = null;
 		for (Integer order : raceResult.keySet()) {
 			Map<Integer, RacerInfo> innerMap = raceResult.get(order);
@@ -59,10 +59,10 @@ public class Races {
 				}
 			}
 		}
-		System.out.println(resultInfo.getRunner() + " : " + resultInfo.getTime());
+		return resultInfo;
 	}
 
-	public void worstRacerInfoOfAll(Map<Integer, Map<Integer, RacerInfo>> raceResult) {
+	public RacerInfo worstRacerInfoOfAll(Map<Integer, Map<Integer, RacerInfo>> raceResult) {
 		RacerInfo resultInfo = null;
 		for (Integer order : raceResult.keySet()) {
 			Map<Integer, RacerInfo> innerMap = raceResult.get(order);
@@ -73,47 +73,65 @@ public class Races {
 				}
 			}
 		}
-		System.out.println(resultInfo.getRunner() + " : " + resultInfo.getTime());
+		return resultInfo;
 	}
 
-	public void winnerRacerInfo(Map<Integer, Map<Integer, RacerInfo>> raceResult) {
-		Map<Integer, RacerInfo> winMap = new HashMap<>();
-		List<String> list = new ArrayList<>();
+	public List<String> winnerRacerInfo(Map<Integer, Map<Integer, RacerInfo>> raceResult) {
+		List<String> winners = new ArrayList<>();
 		for (Integer order : raceResult.keySet()) {
 			for (int rank = 1; rank <= 2; rank++) {
-				winMap.put(order, raceResult.get(order).get(rank));
-				list.add(winMap.get(order).getRunner());
+				RacerInfo racerInfo = raceResult.get(order).get(rank);
+				if (racerInfo != null) {
+					winners.add(racerInfo.getRunner());
+				}
 			}
 		}
-		System.out.println(list);
+		return winners;
 	}
 
-	public void top10RacerInfo(Map<Integer, Map<Integer, RacerInfo>> raceResult) {
-		List<RacerInfo> time = new ArrayList<>();
-		for (Integer order : raceResult.keySet()) {
-			Map<Integer, RacerInfo> innerMap = raceResult.get(order);
-			for (Integer rank : innerMap.keySet()) {
-				time.add(innerMap.get(rank));
+	public Map<Integer, RacerInfo> top10RacerInfo(Map<Integer, Map<Integer, RacerInfo>> racerInfoMap) {
+		List<Double> racerTime = new ArrayList<Double>();
+		Map<Integer, RacerInfo> fasterMap = new HashMap<Integer, RacerInfo>();
+		for (Integer order : racerInfoMap.keySet()) {
+			for (Integer rank : racerInfoMap.get(order).keySet()) {
+				racerTime.add(racerInfoMap.get(order).get(rank).getTime());
 			}
 		}
-		Collections.sort(
-				time,
-				new Comparator<RacerInfo>() {
-					public int compare(RacerInfo obj1, RacerInfo obj2) {
-						return (int) (obj1.getTime() - obj2.getTime());
-					}
-				});
-		for (int i = 0; i < time.size(); i++) {
-			RacerInfo Info = time.get(i);
-			String name = Info.getRunner();
-			Double runTime = Info.getTime();
-			Integer order = Info.getOrder();
-			System.out.println(name + ":" + runTime + ":" + order);
-			if (i == 9) {
+
+		Collections.sort(racerTime);
+
+		int index = 0;
+
+		for (Iterator<Map.Entry<Integer, Map<Integer, RacerInfo>>> it = racerInfoMap.entrySet().iterator(); it
+				.hasNext();) {
+			Map.Entry<Integer, Map<Integer, RacerInfo>> entry = it.next();
+			Map<Integer, RacerInfo> subMap = entry.getValue();
+
+			for (Iterator<Map.Entry<Integer, RacerInfo>> subIt = subMap.entrySet().iterator(); subIt.hasNext();) {
+				Map.Entry<Integer, RacerInfo> subEntry = subIt.next();
+				RacerInfo info = subEntry.getValue();
+
+				if (info.getTime() == racerTime.get(index)) {
+					fasterMap.put(index + 1, info);
+					subIt.remove(); // 安全に削除
+					index++;
+				}
+
+				if (fasterMap.size() >= 10) {
+					break;
+				}
+			}
+
+			if (fasterMap.size() >= 10) {
 				break;
 			}
-
 		}
-	}
 
+		for (Integer key : fasterMap.keySet()) {
+			System.out.println("名前：" + fasterMap.get(key).getRunner() + "\tタイム：" + fasterMap.get(key).getTime() + "\t走順："
+					+ fasterMap.get(key).getOrder());
+		}
+
+		return fasterMap;
+	}
 }

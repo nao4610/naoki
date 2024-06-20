@@ -22,7 +22,6 @@ class RacesTest {
 	@BeforeEach
 	void setUp() {
 		races = new Races();
-
 		ArrayList<RacerInfo> info = new ArrayList<>();
 		info.add(new RacerInfo("nao", 1, 1, 10.2));
 		info.add(new RacerInfo("ryo", 1, 3, 11.7));
@@ -31,15 +30,14 @@ class RacesTest {
 		info.add(new RacerInfo("syu", 2, 1, 11.3));
 		info.add(new RacerInfo("okamoto", 2, 3, 13.0));
 		info.add(new RacerInfo("ino", 3, 1, 10.6));
-		info.add(new RacerInfo("yossi", 3, 3, 13.6));
+		info.add(new RacerInfo("yossi", 3, 4, 13.6));
 		info.add(new RacerInfo("yossidayo", 3, 2, 11.6));
-
+		info.add(new RacerInfo("yosida", 3, 3, 12.6));
 		result = races.createReceResult(info);
 	}
 
 	@Test
 	void testCreateReceResult() {
-
 		assertEquals("nao", result.get(1).get(1).getRunner());
 		assertEquals("hiro", result.get(1).get(2).getRunner());
 		assertEquals("ryo", result.get(1).get(3).getRunner());
@@ -48,23 +46,21 @@ class RacesTest {
 		assertEquals("okamoto", result.get(2).get(3).getRunner());
 		assertEquals("ino", result.get(3).get(1).getRunner());
 		assertEquals("yossidayo", result.get(3).get(2).getRunner());
-		assertEquals("yossi", result.get(3).get(3).getRunner());
+		assertEquals("yossi", result.get(3).get(4).getRunner());
+		assertEquals("yosida", result.get(3).get(3).getRunner());
 	}
 
 	@Test
 	void testSortRaceResult() {
 		Map<Integer, Map<Integer, RacerInfo>> raceResult = new HashMap<>();
-
 		Map<Integer, RacerInfo> race1 = new HashMap<>();
 		race1.put(1, new RacerInfo("nao", 1, 1, 10.2));
 		race1.put(2, new RacerInfo("hiro", 1, 2, 11.0));
 		race1.put(3, new RacerInfo("ryo", 1, 3, 11.7));
-
 		Map<Integer, RacerInfo> race2 = new HashMap<>();
 		race2.put(1, new RacerInfo("syu", 2, 1, 11.3));
 		race2.put(2, new RacerInfo("taba", 2, 2, 12.0));
 		race2.put(3, new RacerInfo("okamoto", 2, 3, 13.0));
-
 		raceResult.put(1, race1);
 		raceResult.put(2, race2);
 
@@ -91,5 +87,40 @@ class RacesTest {
 		expectedOutput.add("ino");
 		assertEquals(expectedOutput, races.bestRacerInfoOfRace(result));
 	}
+
+	@Test
+	void testBestRacerInfoOfAll() {
+		RacerInfo bestRacer = races.bestRacerInfoOfAll(result);
+		RacerInfo expectedBestRacer = new RacerInfo("nao", 1, 1, 10.2);
+		assertEquals(expectedBestRacer.getRunner(), bestRacer.getRunner());
+		assertEquals(expectedBestRacer.getTime(), bestRacer.getTime());
+	}
+
+	@Test
+	void testWorstRacerInfoOfAll() {
+		RacerInfo worstRacer = races.worstRacerInfoOfAll(result);
+		RacerInfo expectedWorstRacer = new RacerInfo("yossi", 3, 3, 13.6);
+		assertEquals(expectedWorstRacer.getRunner(), worstRacer.getRunner());
+		assertEquals(expectedWorstRacer.getTime(), worstRacer.getTime());
+	}
+
+	@Test
+	void testWinnerRacerInfo() {
+		List<String> winners = races.winnerRacerInfo(result);
+		List<String> expectedWinners = List.of("nao", "hiro", "syu", "taba", "ino", "yossidayo");
+		assertEquals(expectedWinners, winners);
+	}
+
+	@Test
+    void testTop10RacerInfo() {
+        Map<Integer, RacerInfo> top10Racers = races.top10RacerInfo(result);
+        List<String> expectedTop10Racers = List.of(
+            "nao", "ino", "hiro", "syu", "yossidayo", "taba", "ryo", "yosida", "okamoto", "yossi"
+        );
+
+        for (int i = 1; i <= 10; i++) {
+            assertEquals(expectedTop10Racers.get(i - 1), top10Racers.get(i).getRunner());
+        }
+    }
 
 }
