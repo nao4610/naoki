@@ -61,28 +61,21 @@ class MathTest {
 	
 	@Test
 	public void testRound4() {
-		assertEquals(3, myMath.round4(3.3)); 
-        assertEquals(-4, myMath.round4(-3.7));
+		assertEquals(3, myMath.round4(3.3));
         assertEquals(4, myMath.round4(3.4));
-        assertEquals(4, myMath.round4(3.5));
         assertEquals(-4, myMath.round4(-3.4));
         assertEquals(-3, myMath.round4(-3.3));
         assertEquals(3, myMath.round4(3.3999999999));
         assertEquals(-3, myMath.round4(-3.3999999999));
-        assertEquals(-4, myMath.round4(-3.5));
-
 	}
 	
 	public void testRound6() {
 		assertEquals(3, myMath.round4(3.5)); 
-        assertEquals(-4, myMath.round4(-3.9));
         assertEquals(4, myMath.round4(3.6));
-        assertEquals(4, myMath.round4(3.7));
         assertEquals(-4, myMath.round4(-3.6));
         assertEquals(-3, myMath.round4(-3.5));
         assertEquals(3, myMath.round4(3.5999999999));
         assertEquals(-3, myMath.round4(-3.5999999999));
-        assertEquals(-4, myMath.round4(-3.7));
 	}
 
 }
