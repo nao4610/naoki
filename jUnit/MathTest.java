@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import jp.co.scsk.kyushu.exBasic.MyMath;
 
-class MathTest {
+class MyMathTest {
 	MyMath myMath = new MyMath();
 
 	@Test
