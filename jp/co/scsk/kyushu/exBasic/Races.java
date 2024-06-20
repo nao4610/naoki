@@ -9,54 +9,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class Races {
-	public static void main(String args[]) {
-		Races races = new Races();
-		ArrayList<RacerInfo> raceResults = new ArrayList<>();
-		RacerInfo racer1 = new RacerInfo();
-		racer1.setRunner("Alice");
-		racer1.setOrder(1);
-		racer1.setRank(2);
-		racer1.setTime(120.5);
-		raceResults.add(racer1);
-		RacerInfo racer2 = new RacerInfo();
-		racer2.setRunner("Bob");
-		racer2.setOrder(1);
-		racer2.setRank(1);
-		racer2.setTime(115.3);
-		raceResults.add(racer2);
-		RacerInfo racer3 = new RacerInfo();
-		racer3.setRunner("Charlie");
-		racer3.setOrder(1);
-		racer3.setRank(3);
-		racer3.setTime(130.2);
-		raceResults.add(racer3);
-		RacerInfo racer4 = new RacerInfo();
-		racer4.setRunner("Dave");
-		racer4.setOrder(2);
-		racer4.setRank(2);
-		racer4.setTime(110.0);
-		raceResults.add(racer4);
-		RacerInfo racer5 = new RacerInfo();
-		racer5.setRunner("Eve");
-		racer5.setOrder(2);
-		racer5.setRank(3);
-		racer5.setTime(112.5);
-		raceResults.add(racer5);
-		RacerInfo racer6 = new RacerInfo();
-		racer6.setRunner("Frank");
-		racer6.setOrder(2);
-		racer6.setRank(1);
-		racer6.setTime(108.7);
-		raceResults.add(racer6);
-
-		System.out.println(races.createReceResult(raceResults));
-		Map<Integer, Map<Integer, RacerInfo>> hi = races.createReceResult(raceResults);
-		races.winnerRacerInfo(hi);
-		races.bestRacerInfoOfRace(hi);
-		races.top10RacerInfo(hi);
-
-	}
-
+	
 	public Map<Integer, Map<Integer, RacerInfo>> createReceResult(ArrayList<RacerInfo> info) {
 		Map<Integer, Map<Integer, RacerInfo>> result = new HashMap<>();
 		for (RacerInfo info1 : info) {

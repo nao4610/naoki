@@ -1,6 +1,9 @@
 package jp.co.scsk.kyushu.exBasic;
 
 public class Marriage {
+	public static void main(String[] args)
+	{
+	}
 	public boolean checkMarriage(Human human) {
 		if (human.getSex().isMan()) {
 			if (human.getAge() >= 18) {

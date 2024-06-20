@@ -8,7 +8,7 @@ public class Human {
 	double height;
 	double weight;
 
-	Human(int age, String name, Sex sex, Blood blood, double height, double weight) {
+	public Human(int age, String name, Sex sex, Blood blood, double height, double weight) {
 		this.age = age;
 		this.name = name;
 		this.sex = sex;

@@ -7,26 +7,29 @@ public class MyString {
 		}
 	}
 
-	public void branch(int num2) {
+	public String branch(int num2) {
+		String message;
 		switch (num2) {
 		case 1:
-			System.out.println("おはようございます");
+			message = "おはようございます";
 			break;
 		case 2:
-			System.out.println("こんにちは");
+			message = "こんにちは";
 			break;
 		case 3:
-			System.out.println("こんばんは");
+			message = "こんばんは";
 			break;
 		case 4:
-			System.out.println("おやすみなさい");
+			message = "おやすみなさい";
 			break;
 		case 5:
-			System.out.println("また明日");
+			message = "また明日";
 			break;
 		default:
-			System.out.println("さようなら");
+			message = "さようなら";
+			break;
 		}
+		return message;
 	}
 
 	public String concat(String[] str) {

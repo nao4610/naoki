@@ -105,6 +105,7 @@ public class MyMath {
 		}
 		return result;
 	}
+	
 
 	public int max(int... nums) {
 		int result = nums[0];
@@ -157,20 +158,36 @@ public class MyMath {
 	}
 
 	public int round4(double num) {
-		int firstNum = (int) ((num * 10) % 10);
-		if (firstNum >= 5) {
-			return (int) Math.ceil(num);
+		int result;
+		double absNum = Math.abs(num);
+		double firstNum = (absNum * 10) - ((int)absNum * 10);
+		
+		if (firstNum < 4) {
+			result = (int)num;
 		} else {
-			return (int) Math.floor(num);
+			if(num < 0) {
+				result = (int)num - 1;
+			} else {
+				result = (int)num + 1;
+			}
 		}
+		return result;
 	}
 
 	public int round6(double num) {
-		int firstNum = (int) ((num * 10) % 10);
-		if (firstNum >= 6) {
-			return (int) Math.ceil(num);
+		int result;
+		double absNum = Math.abs(num);
+		double firstNum = (absNum * 10) - ((int)absNum * 10);
+		
+		if (firstNum < 6) {
+			result = (int)num;
 		} else {
-			return (int) Math.floor(num);
+			if(num < 0) {
+				result = (int)num - 1;
+			} else {
+				result = (int)num + 1;
+			}
 		}
+		return result;
 	}
 }

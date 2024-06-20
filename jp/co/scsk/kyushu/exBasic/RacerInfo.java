@@ -5,6 +5,13 @@ public class RacerInfo {
 	int order;
 	int rank;
 	Double time;
+	
+	 public RacerInfo(String runner, int order, int rank, Double time) {
+	        this.runner = runner;
+	        this.order = order;
+	        this.rank = rank;
+	        this.time = time;
+	    }
 
 	public String getRunner() {
 		return runner;
