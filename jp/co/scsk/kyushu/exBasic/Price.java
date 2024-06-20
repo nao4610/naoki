@@ -3,7 +3,7 @@ package jp.co.scsk.kyushu.exBasic;
 public class Price {
 	public int price1(int age) {
 		int entryFee = 1000;
-		if (age < 6) {
+		if (age < 7) {
 			entryFee = 0;
 		} else if (age < 18) {
 			entryFee /= 2;

@@ -22,7 +22,7 @@ class MathTest {
 		assertEquals(6, myMath.calc(3, 2, 3));
 
 		// 除算のテスト
-		assertEquals(2, myMath.calc(4, 6, 3));
+		assertEquals(1, myMath.calc(4, 5, 3));
 
 		// 剰余のテスト
 		assertEquals(1, myMath.calc(5, 7, 3));

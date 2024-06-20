@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class Races {
-	
+
 	public Map<Integer, Map<Integer, RacerInfo>> createReceResult(ArrayList<RacerInfo> info) {
 		Map<Integer, Map<Integer, RacerInfo>> result = new HashMap<>();
 		for (RacerInfo info1 : info) {
@@ -23,7 +23,7 @@ public class Races {
 		return result;
 	}
 
-	public void sortRaceResult(Map<Integer, Map<Integer, RacerInfo>> raceResult, int raceOrder) {
+	public Map<Double, String> sortRaceResult(Map<Integer, Map<Integer, RacerInfo>> raceResult, int raceOrder) {
 		Map<Double, String> sortMap = new TreeMap<>();
 		for (Integer orderKey : raceResult.keySet()) {
 			if (raceOrder == orderKey) {
@@ -33,18 +33,20 @@ public class Races {
 				}
 			}
 		}
-		System.out.println(sortMap);
+		return sortMap;
 	}
 
-	public void bestRacerInfoOfRace(Map<Integer, Map<Integer, RacerInfo>> raceResult) {
-		Map<Integer, RacerInfo> firstMap = new HashMap<>();
-		for (Integer order : raceResult.keySet()) {
-			firstMap.put(order, raceResult.get(order).get(1));
-		}
-		for (Integer order : firstMap.keySet()) {
-			System.out.println(firstMap.get(order).getRunner());
-		}
-	}
+	public List<String> bestRacerInfoOfRace(Map<Integer, Map<Integer, RacerInfo>> raceResult) {
+        List<String> bestRacers = new ArrayList<>();
+        Map<Integer, RacerInfo> firstMap = new HashMap<>();
+        for (Integer order : raceResult.keySet()) {
+            firstMap.put(order, raceResult.get(order).get(1));
+        }
+        for (Integer order : firstMap.keySet()) {
+            bestRacers.add(firstMap.get(order).getRunner());
+        }
+        return bestRacers;
+    }
 
 	public void bestRacerInfoOfAll(Map<Integer, Map<Integer, RacerInfo>> raceResult) {
 		RacerInfo resultInfo = null;
