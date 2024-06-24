@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class Jdbc_06 {
 
-	public static void main(String[] args) throws SQLException {
+	public static Map<String, CarModel> getCarModelData() throws SQLException {
 		String conUrl = "jdbc:sqlserver://localhost:1433;"
 				+ "database=java_learning;"
 				+ "user=java_learning;"
@@ -24,9 +24,10 @@ public class Jdbc_06 {
 		Statement stmt = con.createStatement();
 		ResultSet rs = stmt.executeQuery(sql);
 
-		Map<String, CarModel> carModelMap = new HashMap<String, CarModel>();
+		Map<String, CarModel> carModelMap = new HashMap<>();
 		while (rs.next()) {
-			CarModel carModel = new CarModel(rs.getString("car_model_id"),
+			CarModel carModel = new CarModel(
+					rs.getString("car_model_id"),
 					rs.getString("car_model_name"),
 					rs.getString("car_type_kbn"),
 					rs.getString("car_class_id"),
@@ -44,6 +45,10 @@ public class Jdbc_06 {
 
 		rs.close();
 		stmt.close();
+		con.close();
 
+		return carModelMap;
 	}
+	
+	
 }

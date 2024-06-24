@@ -17,7 +17,7 @@ public class Jdbc_01 {
 				+ "trustServerCertificate=true;";
 		Connection con = DriverManager.getConnection(conUrl);
 
-		String sql = "select * from nmrm_shop";
+		String sql = "select shop_id, shop_name from nmrm_shop;";
 		Statement stmt = con.createStatement();
 		ResultSet rs = stmt.executeQuery(sql);
 

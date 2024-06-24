@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Jdbc_09 {
-	public static void main(String[] args) throws SQLException {
+	public static Map<String, RentCar> getRentCarData() throws SQLException {
 		String conUrl = "jdbc:sqlserver://localhost:1433;"
 				+ "database=java_learning;"
 				+ "user=java_learning;"
@@ -23,9 +23,10 @@ public class Jdbc_09 {
 		Statement stmt = con.createStatement();
 		ResultSet rs = stmt.executeQuery(sql);
 
-		Map<String, RentCar> rentCarMap = new HashMap<String, RentCar>();
+		Map<String, RentCar> rentCarMap = new HashMap<>();
 		while (rs.next()) {
-			RentCar rentCar = new RentCar(rs.getString("car_management_no"),
+			RentCar rentCar = new RentCar(
+					rs.getString("car_management_no"),
 					rs.getString("car_model_id"),
 					rs.getString("shop_id"),
 					rs.getString("etc"),
@@ -42,6 +43,8 @@ public class Jdbc_09 {
 		rs.close();
 		stmt.close();
 
+		return rentCarMap;
 	}
+
 
 }

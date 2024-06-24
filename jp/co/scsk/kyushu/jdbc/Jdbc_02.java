@@ -17,12 +17,15 @@ public class Jdbc_02 {
 				+ "trustServerCertificate=true;";
 		Connection con = DriverManager.getConnection(conUrl);
 
-		String sql = "select * from nmrm_rent_car";
+		String sql = "select car_management_no, car_model_id, shop_id from nmrm_rent_car;";
 		Statement stmt = con.createStatement();
 		ResultSet rs = stmt.executeQuery(sql);
 
 		while (rs.next()) {
-			System.out.println(rs.getString("car_management_no") + "、" + rs.getString("car_model_id") + "、" + rs.getString("shop_id"));
+			System.out.println(
+					rs.getString("car_management_no") + "、"
+					+ rs.getString("car_model_id") + "、"
+					+ rs.getString("shop_id"));
 		}
 
 		rs.close();

@@ -27,7 +27,9 @@ public class Jdbc_05 {
 		ResultSet rs = pstmt.executeQuery();
 
 		while (rs.next()) {
-			System.out.println(rs.getString("car_management_no") + "、" + rs.getString("car_model_name") + "、"
+			System.out.println(
+					rs.getString("car_management_no") + "、" 
+					+ rs.getString("car_model_name") + "、"
 					+ rs.getString("shop_name"));
 		}
 

@@ -3,20 +3,27 @@ package jp.co.scsk.kyushu.jdbc;
 import java.sql.Date;
 
 public class Shop {
-	private String Shop_id;
-	private String Shop_name;
+	private String shop_id;
+	private String shop_name;
 	private Date ins_date;
 	private String ins_user_id;
 	private int upd_counter;
 	private Date upd_date;
 	private String upd_user_id;
 
-	public Shop(String string, String string2, Date date, String string3, int int1, Date date2, String string4) {
-		// TODO 自動生成されたコンストラクター・スタブ
+	public Shop(String shop_id, String shop_name, Date ins_date, String ins_user_id, int upd_counter, Date upd_date,
+			String upd_user_id) {
+		this.shop_id = shop_id;
+		this.shop_name = shop_name;
+		this.ins_date = ins_date;
+		this.ins_user_id = ins_user_id;
+		this.upd_counter = upd_counter;
+		this.upd_date = upd_date;
+		this.upd_user_id = upd_user_id;
 	}
 
 	public String getShop_name() {
-		return Shop_name;
+		return shop_name;
 	}
 
 	public Date getIns_date() {
@@ -40,7 +47,7 @@ public class Shop {
 	}
 
 	public String getShop_id() {
-		return Shop_id;
+		return shop_id;
 	}
 
 }
