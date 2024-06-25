@@ -14,7 +14,7 @@ public class Jdbc_10 {
 				if (rentCar.getShopId().equals("000001")) {
 					System.out.println(rentCar.getCarManagementNo() + "："
 							+ carModelMap.get(rentCar.getCarModelId()).getCarModelName() + "（"
-							+ rentCar.getSmokingKbn1() + "）");
+							+ rentCar.getSmokingKbnDisPlay() + "）");
 				}
 			}
 

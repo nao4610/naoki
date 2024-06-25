@@ -47,15 +47,57 @@ public class RentCar {
 		return etc;
 	}
 
+	public boolean getExistEtc() {
+		if (etc.equals("1")) {
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean getNotEtc() {
+		if (etc.equals("0")) {
+			return true;
+		}
+		return false;
+	}
+
 	public String getCarNavigation() {
 		return carNavigation;
+	}
+	
+	public boolean getExistCarNavigation() {
+		if (carNavigation.equals("1")) {
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean getNotCarNavigation() {
+		if (carNavigation.equals("0")) {
+			return true;
+		}
+		return false;
 	}
 
 	public String getSmokingKbn() {
 		return smokingKbn;
 	}
+	
+	public boolean getYesSmoking() {
+		if (smokingKbn.equals("1")) {
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean getNoSmoking() {
+		if (smokingKbn.equals("2")) {
+			return true;
+		}
+		return false;
+	}
 
-	public String getSmokingKbn1() {
+	public String getSmokingKbnDisPlay() {
 		return smokingKbn.equals("1") ? "喫煙" : "禁煙";
 	}
 
