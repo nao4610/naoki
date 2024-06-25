@@ -19,7 +19,8 @@ public class Jdbc_06 {
 				+ "trustServerCertificate=true;";
 		Connection con = DriverManager.getConnection(conUrl);
 
-		String sql = "select * from nmrm_car_model";
+		String sql = "select * "
+				+ "from nmrm_car_model;";
 
 		Statement stmt = con.createStatement();
 		ResultSet rs = stmt.executeQuery(sql);
@@ -35,17 +36,16 @@ public class Jdbc_06 {
 					rs.getInt("capacity"),
 					rs.getDouble("fuel_economy"),
 					rs.getInt("displacement"),
-					rs.getDate("ins_date"),
+					rs.getTimestamp("ins_date"),
 					rs.getString("ins_user_id"),
 					rs.getInt("upd_counter"),
-					rs.getDate("upd_date"),
+					rs.getTimestamp("upd_date"),
 					rs.getString("upd_user_id"));
 			carModelMap.put(rs.getString("car_model_id"), carModel);
 		}
 
 		rs.close();
 		stmt.close();
-		con.close();
 
 		return carModelMap;
 	}

@@ -1,90 +1,90 @@
 package jp.co.scsk.kyushu.jdbc;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class CarModel {
-	private String car_model_id;
-	private String car_model_name;
-	private String car_type_kbn;
-	private String car_class_id;
-	private String maker_id;
+	private String carModelId;
+	private String carModelName;
+	private String carTypeKbn;
+	private String carClassId;
+	private String makerId;
 	private int capacity;
-	private double fuel_economy;
+	private double fuelEconomy;
 	private int displacement;
-	private Date ins_date;
-	private String ins_user_id;
-	private int upd_counter;
-	private Date upd_date;
-	private String upd_user_id;
+	private Timestamp insDate;
+	private String insUserId;
+	private int updCounter;
+	private Timestamp updDate;
+	private String updUserId;
 
-	public CarModel(String car_model_id, String car_model_name, String car_type_kbn,
-			String car_class_id, String maker_id, int capacity, double fuel_economy,
-			int displacement, Date date2, String ins_user_id,
-			int upd_counter, Date date, String upd_user_id) {
-		this.car_model_id = car_model_id;
-		this.car_model_name = car_model_name;
-		this.car_type_kbn = car_type_kbn;
-		this.car_class_id = car_class_id;
-		this.maker_id = maker_id;
+	public CarModel(String carModelId, String carModelName, String carTypeKbn,
+			String carClassId, String makerId, int capacity, double fuelEconomy,
+			int displacement, Timestamp insDate, String insUserId,
+			int updCounter, Timestamp updDate, String updUserId) {
+		this.carModelId = carModelId;
+		this.carModelName = carModelName;
+		this.carTypeKbn = carTypeKbn;
+		this.carClassId = carClassId;
+		this.makerId = makerId;
 		this.capacity = capacity;
-		this.fuel_economy = fuel_economy;
+		this.fuelEconomy = fuelEconomy;
 		this.displacement = displacement;
-		this.ins_date = date2;
-		this.ins_user_id = ins_user_id;
-		this.upd_counter = upd_counter;
-		this.upd_date = date;
-		this.upd_user_id = upd_user_id;
+		this.insDate = insDate;
+		this.insUserId = insUserId;
+		this.updCounter = updCounter;
+		this.updDate = updDate;
+		this.updUserId = updUserId;
 	}
 
-	public String getCar_model_id() {
-		return car_model_id;
+	public String getCarModelId() {
+		return carModelId;
 	}
 
-	public String getCar_model_name() {
-		return car_model_name;
+	public String getCarModelName() {
+		return carModelName;
 	}
 
-	public String getCar_type_kbn() {
-		return car_type_kbn;
+	public String getCarTypeKbn() {
+		return carTypeKbn;
 	}
 
-	public String getCar_class_id() {
-		return car_class_id;
+	public String getCarClassId() {
+		return carClassId;
 	}
 
-	public String getMaker_id() {
-		return maker_id;
+	public String getMakerId() {
+		return makerId;
 	}
 
 	public int getCapacity() {
 		return capacity;
 	}
 
-	public double getFuel_economy() {
-		return fuel_economy;
+	public double getFuelEconomy() {
+		return fuelEconomy;
 	}
 
 	public int getDisplacement() {
 		return displacement;
 	}
 
-	public Date getIns_date() {
-		return ins_date;
+	public Timestamp getInsDate() {
+		return insDate;
 	}
 
-	public String getIns_user_id() {
-		return ins_user_id;
+	public String getInsUserId() {
+		return insUserId;
 	}
 
-	public int getUpd_counter() {
-		return upd_counter;
+	public int getUpdCounter() {
+		return updCounter;
 	}
 
-	public Date getUpd_date() {
-		return upd_date;
+	public Timestamp getUpdDate() {
+		return updDate;
 	}
 
-	public String getUpd_user_id() {
-		return upd_user_id;
+	public String getUpdUserId() {
+		return updUserId;
 	}
 }

@@ -11,11 +11,10 @@ public class Jdbc_10 {
 
 			for (String carManagementNo : rentCarMap.keySet()) {
 				RentCar rentCar = rentCarMap.get(carManagementNo);
-				if ("000001".equals(rentCar.getShop_id())) {
-					String smokingStatus = "1".equals(rentCar.getSmoking_kbn()) ? "喫煙" : "禁煙";
-					System.out.println(rentCar.getCar_management_no() + "："
-							+ carModelMap.get(rentCar.getCar_model_id()).getCar_model_name() + "（"
-							+ smokingStatus + "）");
+				if (rentCar.getShopId().equals("000001")) {
+					System.out.println(rentCar.getCarManagementNo() + "："
+							+ carModelMap.get(rentCar.getCarModelId()).getCarModelName() + "（"
+							+ rentCar.getSmokingKbn1() + "）");
 				}
 			}
 

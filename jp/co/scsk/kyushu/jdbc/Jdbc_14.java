@@ -6,9 +6,11 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Jdbc_14 {
-	public static void main(String[] args) throws SQLException {
+	public static List<String> getManagementNo() throws SQLException {
 		String conUrl = "jdbc:sqlserver://localhost:1433;"
 				+ "database=java_learning;"
 				+ "user=java_learning;"
@@ -24,23 +26,25 @@ public class Jdbc_14 {
 				+ "inner join nmrt_lending_status as lend on rent.car_management_no = lend.car_management_no;";
 		Statement stmt = con.createStatement();
 		ResultSet rs = stmt.executeQuery(sql);
-		
-		while (rs.next()) {
-            Date returnPlanDate = rs.getDate("return_plan_date");
-            Date returnDate = Date.valueOf("2018-06-10");
+		List<String> managementNo = new ArrayList<String>();
 
-            if (returnPlanDate.before(returnDate)) {
-                System.out.println(
-                        rs.getString("car_management_no") + " : " 
-                        + rs.getString("car_model_name") + "、"
-                        + rs.getString("shop_name") + "、"
-                        + rs.getString("leading_date") + "、"
-                        + rs.getString("return_plan_date")
-                );
-            }
-        }
+		while (rs.next()) {
+			Date returnPlanDate = rs.getDate("return_plan_date");
+			Date returnDate = Date.valueOf("2018-06-10");
+
+			if (returnPlanDate.before(returnDate)) {
+				System.out.println(
+						rs.getString("car_management_no") + " : "
+								+ rs.getString("car_model_name") + "、"
+								+ rs.getString("shop_name") + "、"
+								+ rs.getString("leading_date") + "、"
+								+ rs.getString("return_plan_date"));
+				managementNo.add(rs.getString("car_management_no"));
+			}
+		}
 		rs.close();
 		stmt.close();
+		return managementNo;
 	}
 
 }

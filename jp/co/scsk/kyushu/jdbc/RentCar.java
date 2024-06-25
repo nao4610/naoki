@@ -1,76 +1,81 @@
 package jp.co.scsk.kyushu.jdbc;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class RentCar {
-	private String car_management_no;
-	private String car_model_id;
-	private String shop_id;
+	private String carManagementNo;
+	private String carModelId;
+	private String shopId;
 	private String etc;
-	private String car_navigation;
-	private String smoking_kbn;
-	private Date ins_date;
-	private String ins_user_id;
-	private int upd_counter;
-	private Date upd_date;
-	private String upd_user_id;
+	private String carNavigation;
+	private String smokingKbn;
+	private Timestamp insDate;
+	private String insUserId;
+	private int updCounter;
+	private Timestamp updDate;
+	private String updUserId;
 
-	public RentCar(String car_management_no, String car_model_id, String shop_id, String etc, String car_navigation,
-			String smoking_kbn, Date ins_date, String ins_user_id, int upd_counter, Date upd_date, String upd_user_id) {
-		this.car_management_no = car_management_no;
-		this.car_model_id = car_model_id;
-		this.shop_id = shop_id;
+	public RentCar(String carManagementNo, String carModelId, String shopId, String etc, String carNavigation,
+			String smokingKbn, Timestamp insDate, String insUserId, int updCounter, Timestamp updDate,
+			String updUserId) {
+		this.carManagementNo = carManagementNo;
+		this.carModelId = carModelId;
+		this.shopId = shopId;
 		this.etc = etc;
-		this.car_navigation = car_navigation;
-		this.smoking_kbn = smoking_kbn;
-		this.ins_date = ins_date;
-		this.ins_user_id = ins_user_id;
-		this.upd_counter = upd_counter;
-		this.upd_date = upd_date;
-		this.upd_user_id = upd_user_id;
+		this.carNavigation = carNavigation;
+		this.smokingKbn = smokingKbn;
+		this.insDate = insDate;
+		this.insUserId = insUserId;
+		this.updCounter = updCounter;
+		this.updDate = updDate;
+		this.updUserId = updUserId;
 	}
 
-	public String getCar_management_no() {
-		return car_management_no;
+	public String getCarManagementNo() {
+		return carManagementNo;
 	}
 
-	public String getCar_model_id() {
-		return car_model_id;
+	public String getCarModelId() {
+		return carModelId;
 	}
 
-	public String getShop_id() {
-		return shop_id;
+	public String getShopId() {
+		return shopId;
 	}
 
 	public String getEtc() {
 		return etc;
 	}
 
-	public String getCar_navigation() {
-		return car_navigation;
+	public String getCarNavigation() {
+		return carNavigation;
 	}
 
-	public String getSmoking_kbn() {
-		return smoking_kbn;
+	public String getSmokingKbn() {
+		return smokingKbn;
 	}
 
-	public Date getIns_date() {
-		return ins_date;
+	public String getSmokingKbn1() {
+		return smokingKbn.equals("1") ? "喫煙" : "禁煙";
 	}
 
-	public String getIns_user_id() {
-		return ins_user_id;
+	public Timestamp getInsDate() {
+		return insDate;
 	}
 
-	public int getUpd_counter() {
-		return upd_counter;
+	public String getInsUserId() {
+		return insUserId;
 	}
 
-	public Date getUpd_date() {
-		return upd_date;
+	public int getUpdCounter() {
+		return updCounter;
 	}
 
-	public String getUpd_user_id() {
-		return upd_user_id;
+	public Timestamp getUpdDate() {
+		return updDate;
+	}
+
+	public String getUpdUserId() {
+		return updUserId;
 	}
 }

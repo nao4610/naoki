@@ -18,7 +18,7 @@ public class Jdbc_09 {
 				+ "trustServerCertificate=true;";
 		Connection con = DriverManager.getConnection(conUrl);
 
-		String sql = "select * from nmrm_rent_car";
+		String sql = "select * from nmrm_rent_car;";
 
 		Statement stmt = con.createStatement();
 		ResultSet rs = stmt.executeQuery(sql);
@@ -32,10 +32,10 @@ public class Jdbc_09 {
 					rs.getString("etc"),
 					rs.getString("car_navigation"),
 					rs.getString("smoking_kbn"),
-					rs.getDate("ins_date"),
+					rs.getTimestamp("ins_date"),
 					rs.getString("ins_user_id"),
 					rs.getInt("upd_counter"),
-					rs.getDate("upd_date"),
+					rs.getTimestamp("upd_date"),
 					rs.getString("upd_user_id"));
 			rentCarMap.put(rs.getString("car_management_no"), rentCar);
 		}
@@ -45,6 +45,5 @@ public class Jdbc_09 {
 
 		return rentCarMap;
 	}
-
 
 }

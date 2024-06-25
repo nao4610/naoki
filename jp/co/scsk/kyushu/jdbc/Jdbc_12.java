@@ -15,9 +15,9 @@ public class Jdbc_12 {
 
 			for (String carManagementNo : rentCarMap.keySet()) {
 				RentCar rentCar = rentCarMap.get(carManagementNo);
-				String shopId = rentCar.getShop_id();
+				String shopId = rentCar.getShopId();
 				carCount.merge(shopId, 1, Integer::sum);
-				if ("1".equals(rentCar.getCar_navigation())) {
+				if ("1".equals(rentCar.getCarNavigation())) {
 					naviCount.merge(shopId, 1, Integer::sum);
 				}
 			}
@@ -25,7 +25,7 @@ public class Jdbc_12 {
 				int totalCars = carCount.get(shopId);
 				int naviCars = naviCount.get(shopId);
 				double ratio = (double) naviCars / totalCars * 100;
-				System.out.println(shopMap.get(shopId).getShop_name() + ":" + String.format("%.1f", ratio) + "%");
+				System.out.println(shopMap.get(shopId).getShopName() + ":" + String.format("%.1f", ratio) + "%");
 			}
 
 		} catch (SQLException e) {

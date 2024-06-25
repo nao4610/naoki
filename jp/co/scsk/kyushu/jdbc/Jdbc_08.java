@@ -18,7 +18,7 @@ public class Jdbc_08 {
 				+ "trustServerCertificate=true;";
 		Connection con = DriverManager.getConnection(conUrl);
 
-		String sql = "select * from nmrm_member";
+		String sql = "select * from nmrm_member;";
 
 		Statement stmt = con.createStatement();
 		ResultSet rs = stmt.executeQuery(sql);
@@ -27,10 +27,10 @@ public class Jdbc_08 {
 		while (rs.next()) {
 			Member member = new Member(rs.getString("member_id"),
 					rs.getString("member_name"),
-					rs.getDate("ins_date"),
+					rs.getTimestamp("ins_date"),
 					rs.getString("ins_user_id"),
 					rs.getInt("upd_counter"),
-					rs.getDate("upd_date"),
+					rs.getTimestamp("upd_date"),
 					rs.getString("upd_user_id"));
 			memberMap.put(rs.getString("member_id"), member);
 		}
