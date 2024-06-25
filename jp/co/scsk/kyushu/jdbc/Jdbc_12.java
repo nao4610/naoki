@@ -17,7 +17,7 @@ public class Jdbc_12 {
 				RentCar rentCar = rentCarMap.get(carManagementNo);
 				String shopId = rentCar.getShopId();
 				carCount.merge(shopId, 1, Integer::sum);
-				if ("1".equals(rentCar.getCarNavigation())) {
+				if (rentCar.getCarNavigation().equals("1")) {
 					naviCount.merge(shopId, 1, Integer::sum);
 				}
 			}

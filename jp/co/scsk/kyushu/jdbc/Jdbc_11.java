@@ -11,7 +11,7 @@ public class Jdbc_11 {
 
 			for (String carManagementNo : rentCarMap.keySet()) {
 				RentCar rentCar = rentCarMap.get(carManagementNo);
-				if ("1".equals(rentCar.getEtc())) {
+				if (rentCar.getEtc().equals("1")) {
 					count++;
 				}
 			}
