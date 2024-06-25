@@ -26,7 +26,7 @@ public class Jdbc_14 {
 				+ "inner join nmrt_lending_status as lend on rent.car_management_no = lend.car_management_no;";
 		Statement stmt = con.createStatement();
 		ResultSet rs = stmt.executeQuery(sql);
-		List<String> managementNo = new ArrayList<String>();
+		List<String> managementNoList = new ArrayList<String>();
 
 		while (rs.next()) {
 			Date returnPlanDate = rs.getDate("return_plan_date");
@@ -39,12 +39,12 @@ public class Jdbc_14 {
 								+ rs.getString("shop_name") + "、"
 								+ rs.getString("leading_date") + "、"
 								+ rs.getString("return_plan_date"));
-				managementNo.add(rs.getString("car_management_no"));
+				managementNoList.add(rs.getString("car_management_no"));
 			}
 		}
 		rs.close();
 		stmt.close();
-		return managementNo;
+		return managementNoList;
 	}
 
 }
