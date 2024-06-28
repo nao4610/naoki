@@ -52,7 +52,7 @@ public class ex02 {
 			int formerPriceValue = formerPrice.get(i);
 			if (delayDateValue >= 1) {
 				delayPrice = formerPriceValue;
-				delayDateValue -= 1;
+				delayDateValue--;
 				delayPrice += (formerPriceValue * 2 * delayDateValue);
 			}
 			delayTotalPrice.add(delayPrice);

@@ -31,7 +31,6 @@ public class ex03 {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-
 		}
 	}
 }
