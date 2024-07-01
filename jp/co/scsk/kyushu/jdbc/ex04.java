@@ -25,7 +25,7 @@ public class ex04 {
 					+ "trustServerCertificate=true;";
 			Connection con = DriverManager.getConnection(conUrl);
 
-			String selectSql = "SELECT shop_id FROM nmrm_rent_car WHERE car_management_no = ?";
+			String selectSql = "SELECT shop_id FROM nmrm_rent_car WHERE car_management_no = ?;";
 			PreparedStatement pstmt = con.prepareStatement(selectSql);
 			pstmt.setString(1, carManagementNo);
 			ResultSet rs = pstmt.executeQuery();
@@ -39,7 +39,7 @@ public class ex04 {
 
 			String insertSql = "INSERT INTO nmrt_return_shop "
 					+ "(car_management_no, shop_id, return_shop_id, ins_date, ins_user_id, upd_counter, upd_date, upd_user_id) "
-					+ "VALUES (?, ?, ?, SYSDATETIME(), ?, 0, SYSDATETIME(), ?)";
+					+ "VALUES (?, ?, ?, SYSDATETIME(), ?, 0, SYSDATETIME(), ?);";
 			pstmt = con.prepareStatement(insertSql);
 			pstmt.setString(1, carManagementNo);
 			pstmt.setString(2, shopId);

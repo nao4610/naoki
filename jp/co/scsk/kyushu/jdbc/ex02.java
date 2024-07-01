@@ -21,18 +21,21 @@ public class ex02 {
 				+ "trustServerCertificate=true;";
 		Connection con = DriverManager.getConnection(conUrl);
 
-		String sql = "select lend.return_plan_date, contract.total_price "
+		String sql = "select lend.return_plan_date, contract.total_price, member.member_name "
 				+ "from nmrt_lending_status as lend "
-				+ "inner join nmrt_contract as contract on lend.car_management_no = contract.car_management_no;";
+				+ "inner join nmrt_contract as contract on lend.car_management_no = contract.car_management_no "
+				+ "inner join nmrm_member as member on contract.member_id = member.member_id;";
 		Statement stmt = con.createStatement();
 		ResultSet rs = stmt.executeQuery(sql);
-		
+
 		List<Timestamp> planDate = new ArrayList<>();
 		List<Integer> formerPrice = new ArrayList<>();
-		
+		List<String> memberName = new ArrayList<>();
+
 		while (rs.next()) {
 			planDate.add(rs.getTimestamp("return_plan_date"));
 			formerPrice.add(rs.getInt("total_price"));
+			memberName.add(rs.getString("member_name"));
 		}
 		List<Integer> delayDate = new ArrayList<>();
 		for (Timestamp timestamp : planDate) {
@@ -44,7 +47,7 @@ public class ex02 {
 				delayDate.add(0);
 			}
 		}
-		
+
 		List<Integer> delayTotalPrice = new ArrayList<>();
 		for (int i = 0; i < delayDate.size(); i++) {
 			int delayPrice = 0;
@@ -56,9 +59,9 @@ public class ex02 {
 				delayPrice += (formerPriceValue * 2 * delayDateValue);
 			}
 			delayTotalPrice.add(delayPrice);
-			System.out.println(delayTotalPrice.get(i));
+			System.out.println("会員名: " + memberName.get(i) + " 延滞料金: " + delayTotalPrice.get(i) + "円");
 		}
-		
+
 		rs.close();
 		stmt.close();
 	}
