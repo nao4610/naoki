@@ -27,7 +27,7 @@ public class ex07 {
 			Connection con = DriverManager.getConnection(conUrl);
 			String makerId = null;
 			for (int count1 = 0; count1 < 1;) {
-				String selectSql = "SELECT maker_id FROM nmrm_maker where maker_name = ?";
+				String selectSql = "select maker_id from nmrm_maker where maker_name = ?";
 				PreparedStatement pstmt = con.prepareStatement(selectSql);
 				pstmt.setString(1, makerName);
 				ResultSet rs = pstmt.executeQuery();
