@@ -21,7 +21,7 @@ public class ex01 {
 		Statement stmt = con.createStatement();
 		ResultSet rs = stmt.executeQuery(sql1);
 
-		while (rs.next()) {
+		if (rs.next()) {
 			String sql2 = "insert into nmrm_staff"
 					+ "(staff_id, staff_name, shop_id, ins_date, ins_user_id, upd_counter, upd_date, upd_user_id) "
 					+ "values (?, ?, ?, sysdatetime(), ?, ?, sysdatetime(), ?);";
@@ -34,7 +34,6 @@ public class ex01 {
 			pstmt.setString(6, "000003");
 			pstmt.executeUpdate();
 			pstmt.close();
-			break;
 
 		}
 		rs.close();

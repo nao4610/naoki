@@ -59,7 +59,9 @@ public class ex02 {
 				delayPrice += (formerPriceValue * 2 * delayDateValue);
 			}
 			delayTotalPrice.add(delayPrice);
-			System.out.println("会員名: " + memberName.get(i) + " 延滞料金: " + delayTotalPrice.get(i) + "円");
+			if (delayPrice > 0) {
+				System.out.println("会員名: " + memberName.get(i) + " 延滞料金: " + delayTotalPrice.get(i) + "円");
+			}
 		}
 
 		rs.close();

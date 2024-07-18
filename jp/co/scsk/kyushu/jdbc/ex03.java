@@ -22,7 +22,7 @@ public class ex03 {
 
 			Connection con = DriverManager.getConnection(conUrl);
 
-			String sql = "UPDATE nmrm_staff SET deleted_at = SYSDATETIME(), upd_date = SYSDATETIME(), upd_counter = upd_counter + 1 WHERE staff_id = ?;";
+			String sql = "UPDATE nmrm_staff SET deleted_at = true, upd_date = SYSDATETIME(), upd_counter = upd_counter + 1 WHERE staff_id = ?;";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, staffId);
 			pstmt.executeUpdate();
